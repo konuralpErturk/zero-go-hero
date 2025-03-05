@@ -7,7 +7,17 @@ import (
 )
 
 func main() {
-	url := "https://www.example1.com/"
+	content := callApi()
+
+	convertResponseToJson(content)
+}
+
+func convertResponseToJson(content string) {
+	panic("unimplemented")
+}
+
+func callApi() string {
+	url := "https://dummyjson.com/products"
 	client := http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	checkError(err)
@@ -21,7 +31,8 @@ func main() {
 	bytes, err := io.ReadAll(resp.Body)
 	checkError(err)
 	fmt.Println(string(bytes))
-
+	content := string(bytes)
+	return content
 }
 
 func checkError(err error) {
